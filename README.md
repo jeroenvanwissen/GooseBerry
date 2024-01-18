@@ -1,5 +1,7 @@
 # GooseBerry - Twitch Streamer Companion App
 
+![GooseBerry](./resources/icon.png)
+
 Built with [React](https://react.dev/), [TailwindCSS](https://tailwindcss.com/), [Electron](https://www.electronjs.org/) and [Vite](https://vitejs.dev/)
 
 ## Installation

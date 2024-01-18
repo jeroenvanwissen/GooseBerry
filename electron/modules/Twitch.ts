@@ -4,16 +4,17 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { IGooseBerry } from '../interfaces';
+import {
+	ACTION_TWITCH_SEND_MESSAGE,
+	TRIGGER_TWITCH_CHAT_COMMAND,
+} from '../uuids';
 
 export default async (GooseBerry: IGooseBerry) => {
-	//TODO Register device, add checks to prevent duplicates
-	// GooseBerry.registerDevice(Twitch...);
-
-	console.log('Loading Twitch');
+	// GooseBerry.registerDevice(TWITCH_DEVICE_ID, 'Twitch');
 
 	// Register Twitch Send Chat Message as Action type
 	GooseBerry.registerAction({
-		id: '07290497-5e49-4aad-aee6-23cc22b38c08',
+		id: ACTION_TWITCH_SEND_MESSAGE,
 		device: 'Twitch',
 		type: 'Send Chat Message as Broadcaster',
 		callback: (options: { message: string }, data: { user: string }) => {
@@ -29,7 +30,7 @@ export default async (GooseBerry: IGooseBerry) => {
 
 	// Register Twitch Chat Command as Trigger type
 	GooseBerry.registerTrigger({
-		id: '0a44826f-5a30-4764-869c-d32aa9900d25',
+		id: TRIGGER_TWITCH_CHAT_COMMAND,
 		device: 'Twitch',
 		type: 'Command',
 	});
@@ -64,7 +65,7 @@ export default async (GooseBerry: IGooseBerry) => {
 		console.log('onCommand');
 		GooseBerry.rules.find((rule) => {
 			if (
-				rule.trigger.id === '0a44826f-5a30-4764-869c-d32aa9900d25' &&
+				rule.trigger.id === TRIGGER_TWITCH_CHAT_COMMAND &&
 				rule.options.command === command
 			) {
 				GooseBerry.actions.find((action) => {

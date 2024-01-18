@@ -1,0 +1,109 @@
+/* eslint-disable prettier/prettier */
+
+// Devices
+export const DEVICE_ELGATO = '54710e72-88c1-4982-a59f-1fd3b7f6e997';
+export const DEVICE_TWITCH = '92f024bf-6b2e-43a4-86e4-02b155740dfd';
+export const DEVICE_HUE = '08d0644e-84f8-4c65-895b-bf8e0280db32';
+export const DEVICE_SONOS = '8893c669-a3a8-49b0-8300-d65f0091825b';
+
+// Actions
+export const ACTION_ELGATO_LIGHT_ON = 'eba7fba9-1b54-441b-aea1-89c0739fe329';
+export const ACTION_ELGATO_LIGHT_OFF = '41515174-8c18-4184-8996-e2e655bc24e5';
+export const ACTION_TWITCH_SEND_MESSAGE = '07290497-5e49-4aad-aee6-23cc22b38c08';
+
+// Triggers
+export const TRIGGER_TWITCH_CHAT_COMMAND = '0a44826f-5a30-4764-869c-d32aa9900d25';
+
+
+// abf9d959-8e7e-4331-b829-3b64d160da36
+// ab00c6bd-9260-4bdb-85be-e699af183c53
+// 5fd7bd4f-696c-4b7e-81bb-a13877b49cc7
+// 19a17a13-d7ff-482f-bdb9-77894f58546b
+// e9efc5c2-c224-46c2-84bd-7c7f3ab00b2b
+// c778e651-23e0-4d65-8edc-76e48aa4882a
+// 4b1fcb05-e2fd-47f4-a3b3-60336936612b
+// ea44af71-067e-4e87-b813-c8d8bfc5579c
+// c7d142fa-9789-4967-b987-5583a2ef5914
+// 7c890477-fda4-4546-af22-56b5d626b7da
+// 67ae5d44-e9b8-496d-829f-52cee94937dd
+// 085697dc-8fdc-4b21-8b61-66f3cad694ef
+// 21e291de-f1aa-43af-b1b8-79b880fc4d6c
+// fc0e267a-b741-47a3-9739-6b54d7ea9a18
+// ab344b67-a9d2-4bac-b8cf-50747a889bcd
+// 217e32a8-f3e2-44b1-ab0d-88fdd84e2371
+// 886ba551-0f4e-4366-8b18-72f89723f558
+// b148df5b-ec5c-4097-bf2a-a1daf03ea3a4
+// 7e31967f-d439-4e6b-af05-2032a0438a2f
+// 5910cb17-4d5a-4a3d-b923-c71fc36187c4
+// 11b86c43-8bb0-4283-b5b8-5c52bba6c3a8
+// 81710e6c-b794-4523-b815-96eaa8047b94
+// 4e17f3fc-ca65-4495-b6a1-7d4a13dd1504
+// c0aac549-12cc-41c2-a981-10a9d557e0f1
+// 16afb9a4-63c2-4aae-b1b0-d51976511033
+// 85eb2fa9-ed23-4f03-b7e2-3dabd499dfdf
+// ab569c70-303b-41d3-b0b1-29ed49b44401
+// 0502d253-28e6-4ecc-a26b-ec09bc5bb8aa
+// 20ed1dc2-f160-4c5d-9112-8b32069ef86f
+// 588c25f4-a7c6-49cf-806a-ff28d7a73b12
+// 56cede5b-775b-4779-ad91-50632ac6778d
+// 658ff233-00e1-4ddf-bbb4-ee87f290d4c2
+// 8ffadde4-98c9-410e-8f67-1fc657ad1be3
+// 03a094bd-8baa-4f38-a205-7a8f539e7dc8
+// 98cda99c-b9b2-4eed-bbac-19f875b16f49
+// fdae6b7f-7011-4fdc-b858-2417726390af
+// dd01fc38-e364-42fb-a739-8c166a8768f6
+// 8ff78aa8-7fc4-4cd3-869b-57cf85ee1d90
+// e5fc91d9-2d97-414f-b24d-cddbab58f826
+// 424ad7ba-db33-4475-b14a-c5853fe60efe
+// be0e5cbc-f636-44ad-97ee-bb7588ad3292
+// 71876170-6783-4183-bd97-adba172b7b1c
+// e6acd5cd-a71e-44d8-92af-6cd12d818e78
+// 1372ffb8-737f-46a6-bae7-366d8dd42097
+// f95d43ba-1bd9-46ae-a903-3b400dea8c78
+// b299d4f7-341b-4e52-9b18-e1dccc8d7b20
+// 72947299-93a0-49b8-afa6-ab8ac15584e7
+// 3165be6b-37c5-4c28-bac3-425b0ba68bd9
+// 81f4fcd6-aea6-4790-bbca-c45322f43d74
+// 68701402-e5cb-4d03-942e-e55787878f94
+// 23742c3c-3cba-4cfb-be51-f3197c35e313
+// 101247dd-9956-463c-aadc-a24068e5ea27
+// 94080e05-e030-4a32-9f68-3e4f74079df0
+// f972f3f1-8ee9-411b-b486-e1f579f357b5
+// e471a3b4-d5d4-4039-a0ba-f5f7c15a5506
+// 09a13501-dabb-4ff5-89ab-f532197ddb7f
+// c69ca03f-a0b5-4e56-aaeb-0fb3074b8e24
+// a13a9def-8cee-43c7-9070-9f472041f33e
+// c20eceec-ef7b-4d9a-8cb7-94214d6d231d
+// 84e1ced0-15fc-4d20-b1a5-28881d89f1cb
+// fa00fc35-b510-4160-a5c0-63046038edb5
+// 787a182c-31f9-49a3-8be4-7573baae5bd4
+// 346f1eea-d6a2-4a37-93c2-3f43fde93bc3
+// 97dff5e7-6ba6-49d1-9cc3-ab49ab80cebc
+// 090416ad-e9bb-4c6d-b394-04650e484926
+// 01ddb34e-d296-4011-9974-91380dfebcd9
+// feeabbe6-6d2e-49ca-abad-6077ffad4f79
+// 01a305a1-55a4-4d75-a6c2-0bc0a8e322cd
+// fd979149-479e-4372-9141-9b35758c4335
+// a8be1c37-9f46-45c0-bc9a-465fdef39340
+// d56ecf27-42c5-47ae-ab3b-4a57186f92d8
+// 7ccc8968-1c79-4874-a7ee-61be44a7ff02
+// af022734-3d75-4a80-b7d0-ec98a00cac09
+// db86fca0-7d8e-4e4e-a9d2-e8951f7c0704
+// 90e440df-469c-456e-b987-873481b0dfc3
+// 04547856-73f0-4075-b2d5-281907d6c159
+// 183df6c4-883a-4b50-90ff-ebd657267723
+// 15ba9168-1e03-4b11-9189-b3e69c4f261e
+// eca5d2da-fe05-4aae-8c0b-0fefae78aea7
+// 5558beaf-3e48-47f8-bf21-664ee8957277
+// a37e1cc6-f021-452a-8799-3747c737dd42
+// e1bf2ec6-b76f-4129-a03e-ea07d2d6a078
+// 4fc9ea63-2bf9-465c-b3e3-e2fd6033aa17
+// 57b6b0e7-fd97-47e6-9f6d-2bbd290adc4e
+// 07539327-aac7-472d-8d80-2252bd2da6e2
+// 2f9bfa8c-c9a7-42f5-a90d-b837661e5a7c
+// 01fba707-a0ef-4f66-adde-43758a64ebd7
+// d3706799-b896-458c-a3bc-e4efcbe02834
+// 5b670af1-8774-474d-bf76-e892d1ffad9f
+// 9aecdad4-ece8-49e9-aaf0-d635ec481563
+// 8cded0f6-b56b-4905-9fdc-2b0518f6c799
+// 482622f5-56e2-4f53-a1ac-9e8fb950b443

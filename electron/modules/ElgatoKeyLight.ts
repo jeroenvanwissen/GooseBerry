@@ -6,6 +6,7 @@ import { default as Bonjour } from 'bonjour-service';
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { IGooseBerry } from '../interfaces';
+import { ACTION_ELGATO_LIGHT_OFF, ACTION_ELGATO_LIGHT_ON } from '../uuids';
 
 //TODO: We need to figure out how to get the IP (IPV4) of the Elgato Key Light Air and use that to send the request.
 
@@ -39,11 +40,13 @@ export default (GooseBerry: IGooseBerry) => {
 
 		//TODO Register device, add checks to prevent duplicates
 		// GooseBerry.registerDevice();
+		// GooseBerry.registerDevice(EGLATO_DEVICE_ID, 'Elgato'); ?? What is we have multiple Elgato devices?
+		// Bonjour doesn't give us a unique ID for the device, so we can't use that.
 	});
 
 	// Actions
 	GooseBerry.registerAction({
-		id: 'eba7fba9-1b54-441b-aea1-89c0739fe329',
+		id: ACTION_ELGATO_LIGHT_ON,
 		device: 'Elgato',
 		type: 'Turn Light On',
 		callback: (options: { address: string; port: number }) => {
@@ -62,7 +65,7 @@ export default (GooseBerry: IGooseBerry) => {
 	});
 
 	GooseBerry.registerAction({
-		id: '41515174-8c18-4184-8996-e2e655bc24e5',
+		id: ACTION_ELGATO_LIGHT_OFF,
 		device: 'Elgato',
 		type: 'Turn Light Off',
 		callback: (options: { address: string; port: number }) => {
