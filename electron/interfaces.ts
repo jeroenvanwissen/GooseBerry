@@ -20,6 +20,16 @@ export interface ITrigger {
 	type: string;
 }
 
+export interface IRule {
+	trigger: {
+		id: string;
+	};
+	action: {
+		id: string;
+	};
+	[key: string]: any;
+}
+
 export interface IGooseBerry {
 	config: {
 		userPreferences: {
@@ -30,15 +40,7 @@ export interface IGooseBerry {
 	triggers: ITrigger[];
 	actions: IAction[];
 	devices: object[];
-	rules: {
-		trigger: {
-			id: string;
-		};
-		action: {
-			id: string;
-		};
-		[key: string]: any;
-	}[];
+	rules: IRule[];
 	registerAction: (...args: IAction[]) => void;
 	registerTrigger: (...args: ITrigger[]) => void;
 	registerRule: (trigger: string, action: string, options: {}) => void;

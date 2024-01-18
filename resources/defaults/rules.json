@@ -1,1 +1,27 @@
-{}
+[
+	{
+		"trigger": { "id": "9c4df97c-1117-405d-8b0f-4bc1992bcf86" },
+		"action": { "id": "07290497-5e49-4aad-aee6-23cc22b38c08" },
+		"options": { "message": "I will hydrate!!" }
+	},
+	{
+		"trigger": { "id": "fe37bbb4-e36e-4c74-8b52-469b45d30657" },
+		"action": { "id": "eba7fba9-1b54-441b-aea1-89c0739fe329" },
+		"options": { "address": "192.168.2.197", "port": 9123 }
+	},
+	{
+		"trigger": { "id": "9d1e1acd-8234-4c25-9eb0-761bb31a66b6" },
+		"action": { "id": "41515174-8c18-4184-8996-e2e655bc24e5" },
+		"options": { "address": "192.168.2.197", "port": 9123 }
+	},
+	{
+		"trigger": { "id": "0a44826f-5a30-4764-869c-d32aa9900d25" },
+		"action": { "id": "07290497-5e49-4aad-aee6-23cc22b38c08" },
+		"options": { "command": "hello", "message": "Well hello there #{user}" }
+	},
+	{
+		"trigger": { "id": "0a44826f-5a30-4764-869c-d32aa9900d25" },
+		"action": { "id": "07290497-5e49-4aad-aee6-23cc22b38c08" },
+		"options": { "command": "testing", "message": "What ya testing..." }
+	}
+]

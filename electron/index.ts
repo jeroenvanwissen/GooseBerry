@@ -23,6 +23,13 @@ const userPreferences = new Store({
 	) as IData,
 });
 
+const rulesStore = new Store({
+	configName: 'rules',
+	defaults: JSON.parse(
+		readFileSync(join(__dirname, '../resources/defaults/rules.json')).toString()
+	) as [],
+});
+
 const modules: { [key: string]: IModule } = {};
 
 const GooseBerry: IGooseBerry = {
@@ -33,7 +40,7 @@ const GooseBerry: IGooseBerry = {
 	devices: [],
 	triggers: [],
 	actions: [],
-	rules: [],
+	rules: rulesStore.load(),
 	registerAction: ({ id, device, type, callback }: IAction) => {
 		//TODO Add check if action already exists ( based on ID )
 		GooseBerry.actions.push({ id, device, type, callback });
@@ -48,6 +55,7 @@ const GooseBerry: IGooseBerry = {
 			},
 			options,
 		});
+		rulesStore.save(GooseBerry.rules as []);
 		//TODO Register rule should store the rules in rules.json
 	},
 	registerTrigger: ({ id, device, type }: ITrigger) => {
@@ -55,37 +63,6 @@ const GooseBerry: IGooseBerry = {
 		GooseBerry.triggers.push({ id, device, type });
 	},
 };
-
-// Hardcoded rules for testing purposes
-GooseBerry.registerRule(
-	'9c4df97c-1117-405d-8b0f-4bc1992bcf86',
-	'07290497-5e49-4aad-aee6-23cc22b38c08',
-	{ message: 'I will hydrate!!' }
-);
-
-GooseBerry.registerRule(
-	'fe37bbb4-e36e-4c74-8b52-469b45d30657',
-	'eba7fba9-1b54-441b-aea1-89c0739fe329',
-	{ address: '192.168.2.197', port: 9123 }
-);
-
-GooseBerry.registerRule(
-	'9d1e1acd-8234-4c25-9eb0-761bb31a66b6',
-	'41515174-8c18-4184-8996-e2e655bc24e5',
-	{ address: '192.168.2.197', port: 9123 }
-);
-
-GooseBerry.registerRule(
-	'0a44826f-5a30-4764-869c-d32aa9900d25',
-	'07290497-5e49-4aad-aee6-23cc22b38c08',
-	{ command: 'hello', message: 'Well hello there #{user}' }
-);
-
-GooseBerry.registerRule(
-	'0a44826f-5a30-4764-869c-d32aa9900d25',
-	'07290497-5e49-4aad-aee6-23cc22b38c08',
-	{ command: 'testing', message: 'What ya testing...' }
-);
 
 GooseBerry.ComfyJS.onConnected = () => {
 	// Dynamically import all modules in the modules folder and run them
