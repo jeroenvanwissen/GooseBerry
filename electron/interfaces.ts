@@ -5,6 +5,21 @@ interface IComfyJS extends ComfyJSInstance {
 	GetChannelRewards?: (clientId: string, manageableOnly?: boolean) => any;
 }
 
+type TCallback<T extends any[]> = (...args: T) => void;
+
+export interface IAction {
+	id: string;
+	device: string;
+	type: string;
+	callback: TCallback<any[]>;
+}
+
+export interface ITrigger {
+	id: string;
+	device: string;
+	type: string;
+}
+
 export interface IGooseBerry {
 	config: {
 		userPreferences: {
@@ -12,27 +27,21 @@ export interface IGooseBerry {
 		};
 	};
 	ComfyJS: IComfyJS;
-	triggers: object[];
-	actions: {
-		id: string;
-		device: string;
-		actionType: string;
-		action: (message: string, username: string) => void;
-	}[];
+	triggers: ITrigger[];
+	actions: IAction[];
 	devices: object[];
 	rules: {
 		trigger: {
-			device: string;
-			type: string;
 			id: string;
 		};
 		action: {
-			device: string;
-			type: string;
 			id: string;
-			message: string;
 		};
+		[key: string]: any;
 	}[];
+	registerAction: (...args: IAction[]) => void;
+	registerTrigger: (...args: ITrigger[]) => void;
+	registerRule: (trigger: string, action: string, options: {}) => void;
 }
 
 export interface IModule {

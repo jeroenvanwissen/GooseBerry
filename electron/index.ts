@@ -12,7 +12,7 @@ import ComfyJS from 'comfy.js';
 import express from './express';
 import Store from './store';
 
-import { IGooseBerry, IModule, IData } from './interfaces';
+import { IGooseBerry, ITrigger, IAction, IModule, IData } from './interfaces';
 
 const userPreferences = new Store({
 	configName: 'user-preferences',
@@ -33,22 +33,59 @@ const GooseBerry: IGooseBerry = {
 	devices: [],
 	triggers: [],
 	actions: [],
-	rules: [
-		{
+	rules: [],
+	registerAction: ({ id, device, type, callback }: IAction) => {
+		//TODO Add check if action already exists ( based on ID )
+		GooseBerry.actions.push({ id, device, type, callback });
+	},
+	registerRule: (trigger: string, action: string, options: {}) => {
+		GooseBerry.rules.push({
 			trigger: {
-				device: 'twitch',
-				type: 'redemption',
-				id: '9c4df97c-1117-405d-8b0f-4bc1992bcf86',
+				id: trigger,
 			},
 			action: {
-				device: 'twitch',
-				type: 'chat',
-				id: '9c4df97c-1117-405d-8b0f-4bc1992bcf86',
-				message: 'Hello {username}!',
+				id: action,
 			},
-		},
-	],
+			options,
+		});
+		//TODO Register rule should store the rules in rules.json
+	},
+	registerTrigger: ({ id, device, type }: ITrigger) => {
+		//TODO Add check if trigger already exists ( based on ID )
+		GooseBerry.triggers.push({ id, device, type });
+	},
 };
+
+// Hardcoded rules for testing purposes
+GooseBerry.registerRule(
+	'9c4df97c-1117-405d-8b0f-4bc1992bcf86',
+	'07290497-5e49-4aad-aee6-23cc22b38c08',
+	{ message: 'I will hydrate!!' }
+);
+
+GooseBerry.registerRule(
+	'fe37bbb4-e36e-4c74-8b52-469b45d30657',
+	'eba7fba9-1b54-441b-aea1-89c0739fe329',
+	{ address: '192.168.2.197', port: 9123 }
+);
+
+GooseBerry.registerRule(
+	'9d1e1acd-8234-4c25-9eb0-761bb31a66b6',
+	'41515174-8c18-4184-8996-e2e655bc24e5',
+	{ address: '192.168.2.197', port: 9123 }
+);
+
+GooseBerry.registerRule(
+	'0a44826f-5a30-4764-869c-d32aa9900d25',
+	'07290497-5e49-4aad-aee6-23cc22b38c08',
+	{ command: 'hello', message: 'Well hello there #{user}' }
+);
+
+GooseBerry.registerRule(
+	'0a44826f-5a30-4764-869c-d32aa9900d25',
+	'07290497-5e49-4aad-aee6-23cc22b38c08',
+	{ command: 'testing', message: 'What ya testing...' }
+);
 
 GooseBerry.ComfyJS.onConnected = () => {
 	// Dynamically import all modules in the modules folder and run them
@@ -59,10 +96,11 @@ GooseBerry.ComfyJS.onConnected = () => {
 		modules[module].default(GooseBerry);
 	});
 
-	// Set StatusBar indicator to show if connected or not
+	//TODO: Set StatusBar indicator to show if connected or not
 	console.log('Connected!!');
 };
 
+// Connect to Twitch chat
 GooseBerry.ComfyJS.Init(
 	GooseBerry.config.userPreferences.get('TWITCH_BOT_USERNAME') as string,
 	GooseBerry.config.userPreferences.get(
@@ -71,6 +109,7 @@ GooseBerry.ComfyJS.Init(
 	[GooseBerry.config.userPreferences.get('TWITCH_BOT_CHANNEL') as string]
 );
 
+// Application
 const height = 600;
 const width = 800;
 
@@ -148,6 +187,8 @@ app.on('window-all-closed', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
+//TODO: Clean up below here...
+
 // listen the channel `message` and resend the received message to the renderer process
 ipcMain.on('message', (event: IpcMainEvent, message: unknown) => {
 	console.log('message', message);
@@ -158,15 +199,15 @@ ipcMain.on('message', (event: IpcMainEvent, message: unknown) => {
 	setTimeout(() => event.sender.send('message', 'hi from electron'), 500);
 });
 
-// Listen to ConfyJS events and send to renderer process
-GooseBerry.ComfyJS.onCommand = (
-	user: string,
-	command: string,
-	message: string
-) => {
-	console.log(`${user} used ${command} with message: ${message}`);
-	BrowserWindow.getAllWindows()[0].webContents.send(
-		'message',
-		`${user} used ${command} with message: ${message}`
-	);
-};
+// // Listen to ConfyJS events and send to renderer process
+// GooseBerry.ComfyJS.onCommand = (
+// 	user: string,
+// 	command: string,
+// 	message: string
+// ) => {
+// 	console.log(`${user} used ${command} with message: ${message}`);
+// 	BrowserWindow.getAllWindows()[0].webContents.send(
+// 		'message',
+// 		`${user} used ${command} with message: ${message}`
+// 	);
+// };

@@ -16,5 +16,6 @@ module.exports = {
 	},
 	rules: {
 		'tailwindcss/no-custom-classname': 'off',
+		'import/no-extraneous-dependencies': 'off',
 	},
 };
