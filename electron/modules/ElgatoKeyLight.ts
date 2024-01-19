@@ -49,8 +49,8 @@ export default (GooseBerry: IGooseBerry) => {
 		id: ACTION_ELGATO_LIGHT_ON,
 		device: 'Elgato',
 		type: 'Turn Light On',
-		callback: (options: { address: string; port: number }) => {
-			void fetch(`http://${options.address}:${options.port}/elgato/lights`, {
+		callback: (device: { address: string; port: number }) => {
+			void fetch(`http://${device.address}:${device.port}/elgato/lights`, {
 				method: 'PUT',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
@@ -68,8 +68,8 @@ export default (GooseBerry: IGooseBerry) => {
 		id: ACTION_ELGATO_LIGHT_OFF,
 		device: 'Elgato',
 		type: 'Turn Light Off',
-		callback: (options: { address: string; port: number }) => {
-			void fetch(`http://${options.address}:${options.port}/elgato/lights`, {
+		callback: (device: { address: string; port: number }) => {
+			void fetch(`http://${device.address}:${device.port}/elgato/lights`, {
 				method: 'PUT',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
