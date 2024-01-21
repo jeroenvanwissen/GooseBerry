@@ -1,8 +1,12 @@
-import { Routes, Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
+// import { Context } from './Context';
+
+// UI Components
 import NavigationBar from './components/NavigationBar';
 import StatusBar from './components/StatusBar';
 
+// UI Views
 import Dashboard from './components/views/Dashboard';
 import Redemptions from './components/views/Redemptions';
 import Actions from './components/views/Actions';

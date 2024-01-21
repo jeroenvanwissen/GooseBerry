@@ -43,12 +43,20 @@ export default async (GooseBerry: IGooseBerry) => {
 				GooseBerry.config.userPreferences.get('TWITCH_BOT_CLIENT_ID') as string,
 				false
 			);
+			GooseBerry.redemptions = channelRewards;
+
+			GooseBerry.webContents.send('redemptions', channelRewards);
+
 			channelRewards.forEach((reward: any) => {
 				//TODO: Maybe extend the trigger object to add more properties like cost, etc.
 				GooseBerry.registerTrigger({
 					id: reward.id,
 					device: 'Twitch',
 					type: reward.title,
+					options: {
+						cost: reward.cost,
+						active: reward.is_enabled,
+					},
 				});
 			});
 		}

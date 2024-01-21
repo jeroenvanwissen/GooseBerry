@@ -1,8 +1,23 @@
 /* eslint-disable @typescript-eslint/no-redundant-type-constituents */
-import { ComfyJSInstance } from 'comfy.js';
+import { ComfyJSInstance, Reward } from 'comfy.js';
 
+// Extend ComfyJS interface with GetChannelRewards, CreateChannelReward, UpdateChannelReward, DeleteChannelReward definitions
 interface IComfyJS extends ComfyJSInstance {
-	GetChannelRewards?: (clientId: string, manageableOnly?: boolean) => any;
+	GetChannelRewards?: (
+		clientId: string,
+		manageableOnly?: boolean
+	) => Promise<Reward[]>;
+	CreateChannelReward?: (
+		clientId: string,
+		rewardInfo: Reward
+	) => Promise<Reward>;
+	UpdateChannelReward?: (
+		clientId: string,
+		rewardId: string,
+		rewardInfo: Reward
+	) => Promise<Reward>;
+	//TODO figure out what the return type is for DeleteChannelReward
+	DeleteChannelReward?: (clientId: string, rewardId: string) => Promise<[]>;
 }
 
 type TCallback<T extends any[]> = (...args: T) => void;
@@ -18,6 +33,9 @@ export interface ITrigger {
 	id: string;
 	device: string;
 	type: string;
+	options?: {
+		[key: string]: any;
+	};
 }
 
 export interface IRule {
@@ -37,6 +55,7 @@ export interface IGooseBerry {
 		};
 	};
 	ComfyJS: IComfyJS;
+	redemptions: object[];
 	triggers: ITrigger[];
 	actions: IAction[];
 	devices: object[];
@@ -44,6 +63,7 @@ export interface IGooseBerry {
 	registerAction: (...args: IAction[]) => void;
 	registerTrigger: (...args: ITrigger[]) => void;
 	registerRule: (trigger: string, action: string, options: {}) => void;
+	webContents: any;
 }
 
 export interface IModule {
